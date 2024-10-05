@@ -13,6 +13,9 @@ export default () => {
             href: "javascript:void(0)"
         },
         {
+            img: "./images.jpg"
+        },
+        {
             title: "A Quick Guide to WordPress Hosting",
             desc: "According to him, â€œI'm still surprised that this has happened. But we are surprised because we are so surprised.â€More revelations about Whittington will be featured in the film",
             img: "https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
@@ -38,7 +41,10 @@ export default () => {
             authorName: "Lourin",
             date: "Jan 4 2022",
             href: "javascript:void(0)"
-        }
+        },
+        {
+            img: "./images.jpg"
+        },
     ]
 
     return (

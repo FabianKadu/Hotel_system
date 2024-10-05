@@ -2,7 +2,7 @@ const Brand = ({ ...props }) => (
     <div style={{ display: 'flex', alignItems: 'center' }}>
         {/* Reemplaza el SVG por una imagen PNG */}
         <img
-            src="/hotel.png" // Asegúrate de que el archivo "logo-hotel.png" esté en la carpeta public
+            src="/hotel.png" 
             alt="Hotel Logo"
             width="60"
             height="60"
