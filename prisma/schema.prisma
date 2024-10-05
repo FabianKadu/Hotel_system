@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model habitacion {
+  id_habitacion     Int        @id @default(autoincrement())
+  numero_habitacion Int
+  tipo_habitacion   String     @db.VarChar(50)
+  precio_por_noche  Decimal    @db.Decimal(10, 2)
+  estado_habitacion String     @db.VarChar(50)
+  descripcion       String?    @db.Text
+  reserva          reserva[]
+}
+
+model pago {
+  id_pago     Int      @id @default(autoincrement())
+  id_reserva  Int
+  monto       Decimal  @db.Decimal(10, 2)
+  metodo_pago String   @db.VarChar(50)
+  fecha_pago  DateTime @db.Date
+  estado_pago String   @db.VarChar(50)
+  reserva    reserva @relation(fields: [id_reserva], references: [id_reserva], onUpdate: Restrict, map: "pago_ibfk_1")
+
+  @@index([id_reserva], map: "id_reserva")
+}
+
+model reserva {
+  id_reserva     Int          @id @default(autoincrement())
+  id_usuario     Int
+  id_habitacion  Int
+  fecha_reserva  DateTime     @db.Date
+  fecha_entrada  DateTime     @db.Date
+  fecha_salida   DateTime     @db.Date
+  estado_reserva String       @db.VarChar(50)
+  numero_noches  Int
+  costo_total    Decimal      @db.Decimal(10, 2)
+  pago          pago[]
+  usuario       usuario     @relation(fields: [id_usuario], references: [id_usuario], onUpdate: Restrict, map: "reserva_ibfk_1")
+  habitacion   habitacion @relation(fields: [id_habitacion], references: [id_habitacion], onUpdate: Restrict, map: "reserva_ibfk_2")
+
+  @@index([id_habitacion], map: "id_habitacion")
+  @@index([id_usuario], map: "id_usuario")
+}
+
+model usuario {
+  id_usuario     Int        @id @default(autoincrement())
+  nombre         String     @db.VarChar(50)
+  apellido       String     @db.VarChar(50)
+  email          String     @unique(map: "email") @db.VarChar(100)
+  telefono       String?    @db.VarChar(15)
+  direccion      String?    @db.VarChar(255)
+  tipo_usuario   String     @db.VarChar(50)
+  fecha_registro DateTime   @db.Date
+  contrase_a     String     @map("contraseña") @db.VarChar(255)
+  reserva       reserva[]
+}

@@ -1,5 +1,5 @@
 -- Crear tabla Usuarios
-CREATE TABLE Usuarios (
+CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE Usuarios (
 );
 
 -- Crear tabla Habitaciones
-CREATE TABLE Habitaciones (
+CREATE TABLE Habitacion (
     id_habitacion INT AUTO_INCREMENT PRIMARY KEY,
     numero_habitacion INT NOT NULL,
     tipo_habitacion VARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE Habitaciones (
 );
 
 -- Crear tabla Reservas
-CREATE TABLE Reservas (
+CREATE TABLE Reserva (
     id_reserva INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL,
     id_habitacion INT NOT NULL,
@@ -32,17 +32,17 @@ CREATE TABLE Reservas (
     estado_reserva VARCHAR(50) NOT NULL,
     numero_noches INT NOT NULL,
     costo_total DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
-    FOREIGN KEY (id_habitacion) REFERENCES Habitaciones(id_habitacion)
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_habitacion) REFERENCES Habitacion(id_habitacion)
 );
 
 -- Crear tabla Pagos
-CREATE TABLE Pagos (
+CREATE TABLE Pago (
     id_pago INT AUTO_INCREMENT PRIMARY KEY,
     id_reserva INT NOT NULL,
     monto DECIMAL(10, 2) NOT NULL,
     metodo_pago VARCHAR(50) NOT NULL,
     fecha_pago DATE NOT NULL,
     estado_pago VARCHAR(50) NOT NULL,
-    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva)
+    FOREIGN KEY (id_reserva) REFERENCES Reserva(id_reserva)
 );
