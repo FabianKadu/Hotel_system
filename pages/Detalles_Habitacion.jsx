@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function DetallesHabitacion() {
-    
+
     const [habitacion, setHabitacion] = useState(null);
     const [selectedImage, setSelectedImage] = useState(0); // Estado para la imagen principal
     const router = useRouter();
@@ -37,6 +37,13 @@ export default function DetallesHabitacion() {
         `/habitacion${habitacion.numero_habitacion}3.jpg`,
         `/habitacion${habitacion.numero_habitacion}4.jpg`
     ];
+
+    const handleReservar = () => {
+        router.push({
+            pathname: '/Reservar',
+            query: { id_habitacion: habitacion.id_habitacion }, // Solo se pasa el ID por URL
+        });
+    };
 
     return (
         <div className="container mx-auto mt-32 p-8 bg-white rounded-lg shadow-xl">
@@ -102,6 +109,15 @@ export default function DetallesHabitacion() {
                                 <i className="fas fa-utensils text-green-500 mr-3"></i> Desayuno incluido
                             </li>
                         </ul>
+                    </div>
+                    {/* Botón para reservar */}
+                    <div className="mt-8">
+                        <button
+                            onClick={handleReservar}
+                            className="bg-blue-600 w-max hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+                        >
+                            Reservar
+                        </button>
                     </div>
                 </div>
             </div>
