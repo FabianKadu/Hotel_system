@@ -120,11 +120,13 @@ const Navbar = () => {
                                             <span>Bienvenido, {usuario.nombre}</span>
                                         </div>
                                         <div className="rounded-full bg-gray-600 w-10 h-10 flex items-center justify-center">
-                                            <img
-                                                src="./foto.jpg"
-                                                alt="Foto de perfil"
-                                                className="rounded-full w-full h-full"
-                                            />
+                                            <Link href="/Perfil" aria-label="Logo">
+                                                <img
+                                                    src="./foto.jpg"
+                                                    alt="Foto de perfil"
+                                                    className="rounded-full w-full h-full"
+                                                />
+                                            </Link>
                                         </div>
                                         <button onClick={handleLogout} className="ml-4 bg-red-500 px-3 py-1 rounded text-white">
                                             Cerrar Sesión

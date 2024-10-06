@@ -7,7 +7,7 @@ export default async function handler(req, res) {
         try {
             // Obtener todas las habitaciones cuyo estado no sea "disponible"
             const habitacionesReservadas = await prisma.habitacion.findMany({
-                where: { estado_habitacion: 'reservada' },
+                where: { estado_habitacion: 'Reservada' },
             });
 
             // Actualizar el estado de las habitaciones a "disponible" si la fecha de salida ha pasado
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
                     if (ultimaReserva && new Date(ultimaReserva.fecha_salida) < new Date()) {
                         await prisma.habitacion.update({
                             where: { id_habitacion: habitacion.id_habitacion },
-                            data: { estado_habitacion: 'disponible' },
+                            data: { estado_habitacion: 'Disponible' },
                         });
                     }
                 })
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
             // Después de actualizar, obtener solo las habitaciones que tienen el estado "disponible"
             const habitacionesDisponibles = await prisma.habitacion.findMany({
                 where: {
-                    estado_habitacion: 'disponible', // Filtrar por estado "disponible"
+                    estado_habitacion: 'Disponible', // Filtrar por estado "disponible"
                 },
             });
 
