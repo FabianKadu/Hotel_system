@@ -45,9 +45,28 @@ const Navbar = () => {
 
     const DarkModeBtn = () => <DarkModeHandler className={`dark:text-sky-500 ${addColor("text-blue-600 hover:bg-gray-50", "text-sky-500 hover:bg-gray-800")}`} />
 
+    // login usuario
+    const [usuario, setUsuario] = useState(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        // Cargar los datos del usuario desde localStorage
+        const usuarioGuardado = localStorage.getItem('usuario');
+        if (usuarioGuardado) {
+            setUsuario(JSON.parse(usuarioGuardado));
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+        setUsuario(null);
+        router.push('/');
+    };
+
     return (
         <header>
-            <nav className={`${bgColor} dark:bg-gray-900 w-full md:static md:text-sm ${state ? "relative z-20" : ""}`}>
+            <nav className={`${bgColor} dark:bg-gray-900 w-full fixed md:text-sm top-0 left-0 z-20`}>
                 <div className="custom-screen relative items-center mx-auto md:flex">
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <Link href="/" aria-label="Logo">
@@ -96,15 +115,33 @@ const Navbar = () => {
                                 <DarkModeBtn />
                             </li>
                             <li>
-                                <NavLink
-                                    href="/login"
-                                    className="flex items-center justify-center gap-x-1 font-medium text-sm text-white bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full"
-                                >
-                                    Iniciar Sesion
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                                        <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-                                    </svg>
-                                </NavLink>
+                                {usuario ? (
+                                    <div className="flex items-center">
+                                        <div className="mr-4 text-white">
+                                            <span>Bienvenido, {usuario.nombre}</span>
+                                        </div>
+                                        <div className="rounded-full bg-gray-600 w-10 h-10 flex items-center justify-center">
+                                            <img
+                                                src="./foto.jpg"
+                                                alt="Foto de perfil"
+                                                className="rounded-full w-full h-full"
+                                            />
+                                        </div>
+                                        <button onClick={handleLogout} className="ml-4 bg-red-500 px-3 py-1 rounded text-white">
+                                            Cerrar Sesión
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <NavLink
+                                        href="/login"
+                                        className="flex items-center justify-center gap-x-1 font-medium text-sm text-white bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full"
+                                    >
+                                        Iniciar Sesion
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                                        </svg>
+                                    </NavLink>
+                                )}
                             </li>
                         </ul>
                     </div>

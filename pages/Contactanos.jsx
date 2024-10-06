@@ -34,7 +34,7 @@ export default function Contact() {
 
   return (
     <main className="relative">
-      <div className=" mx-auto px-4 text-gray-600 py-16 dark:text-gray-300">
+      <div className="mt-32 mx-auto px-4 text-gray-600 py-16 dark:text-gray-300">
         <div className="max-w-xl space-y-3">
           <h3 className="text-indigo-600 font-semibold">
             Contact

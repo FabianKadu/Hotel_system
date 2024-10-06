@@ -12,10 +12,9 @@ export default () => {
 
     return (
         <section className="mt-12 mx-auto px-4 max-w-screen-xl md:px-8">
-            <div className="text-center">
+            <div className="text-center mt-32">
                 <h1 className="text-3xl text-gray-800 font-semibold dark:text-gray-300">
                     Habitaciones
-                    <hr />
                 </h1>
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
                     descripcion descripcion descripcion descripcion.

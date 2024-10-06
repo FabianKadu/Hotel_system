@@ -1,15 +1,50 @@
 import Head from "next/head";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Hacer la solicitud al backend para el login
+    const response = await fetch('/api/Login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, contraseña: password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Guardar el token y redirigir al inicio
+      localStorage.setItem('token', data.token); // Guardar el token en localStorage
+      localStorage.setItem('usuario', JSON.stringify(data.usuario)); // Guardar el usuario
+      router.push('/'); // Redirigir al inicio
+    } else {
+      setError(data.error || 'Error al iniciar sesión');
+    }
+  };
+
   return (
     <>
       <Head>
         <title>Login - Hotel System</title>
       </Head>
       <main className="w-full h-screen flex flex-col items-center justify-center px-4">
-        <div className="max-w-sm w-full text-gray-600 space-y-5">
+        <div className="max-w-sm w-full text-gray-600  space-y-5">
           <div className="text-center pb-8">
-            <img src="./hotel.png" width={120} className="mx-auto" />
+            <Link href="/" aria-label="Logo">
+              <img src="./hotel.png" width={120} className="mx-auto" />
+            </Link>
             <div className="mt-5">
               <h3 className="text-gray-800 dark:text-gray-300 text-4xl font-bold sm:text-3xl">Hotel System</h3>
             </div>
@@ -19,25 +54,32 @@ export default function Login() {
             </div>
           </div>
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             className="space-y-5"
           >
+            <div className="justify-center">{error && <div className="mb-4 text-red-500">{error}</div>}</div>
             <div>
               <label className="font-medium dark:text-gray-300">
                 Email
               </label>
               <input
                 type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
             <div>
               <label className="font-medium dark:text-gray-300">
-                Password
+                Contraseña
               </label>
               <input
                 type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />

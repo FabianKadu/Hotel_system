@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -55,8 +56,11 @@ export default function Registro() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg mt-5 mb-5">
+                <Link href="/" aria-label="Logo">
+                    <img src="./hotel.png" width={120} className="mx-auto" />
+                </Link>
                 <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">Registro de Usuario</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <input
