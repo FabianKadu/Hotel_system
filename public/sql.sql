@@ -8,7 +8,8 @@ CREATE TABLE Usuario (
     direccion VARCHAR(255),
     tipo_usuario VARCHAR(50) NOT NULL,
     fecha_registro DATE NOT NULL,
-    contraseña VARCHAR(255) NOT NULL
+    contraseña VARCHAR(255) NOT NULL,
+    puntos INT
 );
 
 -- Crear tabla Habitaciones

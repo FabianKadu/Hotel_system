@@ -57,5 +57,6 @@ model usuario {
   tipo_usuario   String     @db.VarChar(50)
   fecha_registro DateTime   @db.Date
   contrase_a     String     @map("contraseña") @db.VarChar(255)
+  puntos         Int        @default(1000)
   reserva       reserva[]
 }
