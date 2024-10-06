@@ -12,9 +12,17 @@ function CardHabitacion({ habitacion }) {
         });
     };
 
+    const handleVerDetalles = () => {
+        // Redirigir a la página de Detalles_Habitacion pasando solo el ID de la habitación
+        router.push({
+            pathname: '/Detalles_Habitacion',
+            query: { id_habitacion: habitacion.id_habitacion }, // Solo se pasa el ID por URL
+        });
+    };
+
     return (
         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-            <img class="w-full h-48 object-cover" src={"./images.jpg"} alt="Habitación de hotel" />
+            <img class="w-full h-48 object-cover" src={`/habitacion${habitacion.numero_habitacion}.jpg`} alt="Habitación de hotel" />
 
             <div class="px-6 py-4">
                 <div class="flex items-center justify-between">
@@ -54,11 +62,13 @@ function CardHabitacion({ habitacion }) {
                     </div>
                 </div>
             </div>
-
             <div class="px-6 pt-4 pb-6">
                 <div class="flex items-center justify-between">
                     <span class="text-gray-900 font-bold text-xl">S/. {habitacion.precio_por_noche}.00 /    noche</span>
-                    <button onClick={handleReservar} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button onClick={handleVerDetalles} class="hover:bg-emerald-600 bg-green-400 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </button>
+                    <button onClick={handleReservar} class="bg-blue-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded">
                         Reservar
                     </button>
                 </div>
