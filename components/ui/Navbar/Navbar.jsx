@@ -29,7 +29,6 @@ const Navbar = () => {
     const navigation = [
         { name: "Nosotros", href: "/login" },
         { name: "Habitaciones", href: "/Habitaciones" },
-        { name: "Reservas", href: "/#pricing" },
         { name: "Contactanos", href: "/Contactanos" },
     ]
 

@@ -1,5 +1,17 @@
+import { useRouter } from "next/router";
 
-function CardHabitacion({habitacion}) {
+function CardHabitacion({ habitacion }) {
+
+    const router = useRouter();
+
+    const handleReservar = () => {
+        // Redirigir a la página de reserva pasando solo el ID de la habitación
+        router.push({
+            pathname: '/Reservar',
+            query: { id_habitacion: habitacion.id_habitacion }, // Solo se pasa el ID por URL
+        });
+    };
+
     return (
         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
             <img class="w-full h-48 object-cover" src={"./images.jpg"} alt="Habitación de hotel" />
@@ -46,7 +58,7 @@ function CardHabitacion({habitacion}) {
             <div class="px-6 pt-4 pb-6">
                 <div class="flex items-center justify-between">
                     <span class="text-gray-900 font-bold text-xl">S/. {habitacion.precio_por_noche}.00 /    noche</span>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button onClick={handleReservar} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Reservar
                     </button>
                 </div>
