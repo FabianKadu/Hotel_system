@@ -19,7 +19,7 @@ const HeroIntroVideo = ({
                 </button>
                 <div className="max-w-2xl">
                     <VideoPlayer
-                        src="https://res.cloudinary.com/floatui/video/upload/v1673211729/cs50_h7vvpl.3gp"
+                        src="https://www.youtube.com/watch?v=eAW1TNnjrzs"
                         type="video/mp4"
                         autoplay={true}
                     />

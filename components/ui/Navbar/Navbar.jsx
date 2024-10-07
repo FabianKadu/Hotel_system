@@ -27,7 +27,7 @@ const Navbar = () => {
     const navMenuBtnColor = addColor("text-gray-500 hover:bg-gray-50", "text-gray-400 hover:bg-gray-800")
 
     const navigation = [
-        { name: "Nosotros", href: "/login" },
+        { name: "Nosotros", href: "/Nosotros" },
         { name: "Habitaciones", href: "/Habitaciones" },
         { name: "Contactanos", href: "/Contactanos" },
     ]

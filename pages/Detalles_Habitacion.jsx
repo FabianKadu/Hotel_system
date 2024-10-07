@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWifi, faShower, faTv, faBroom, faBath, faUtensils } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function DetallesHabitacion() {
 
@@ -91,22 +94,22 @@ export default function DetallesHabitacion() {
                         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Servicios Incluidos</h2>
                         <ul className="list-none text-lg text-gray-600 space-y-2">
                             <li className="flex items-center">
-                                <i className="fas fa-wifi text-green-500 mr-3"></i> Wifi
+                                <FontAwesomeIcon icon={faWifi} className="text-green-500 mr-3 w-4 h-4" /> Wifi
                             </li>
                             <li className="flex items-center">
-                                <i className="fas fa-shower text-green-500 mr-3"></i> Agua caliente
+                                <FontAwesomeIcon icon={faShower} className="text-green-500 mr-3 w-4 h-4" /> Agua caliente
                             </li>
                             <li className="flex items-center">
-                                <i className="fas fa-tv text-green-500 mr-3"></i> Televisión con Netflix
+                                <FontAwesomeIcon icon={faTv} className="text-green-500 mr-3 w-4 h-4" /> Televisión con Netflix
                             </li>
                             <li className="flex items-center">
-                                <i className="fas fa-broom text-green-500 mr-3"></i> Servicio de limpieza diario
+                                <FontAwesomeIcon icon={faBroom} className="text-green-500 mr-3 w-4 h-4" /> Servicio de limpieza diario
                             </li>
                             <li className="flex items-center">
-                                <i className="fas fa-bath text-green-500 mr-3"></i> Baño privado
+                                <FontAwesomeIcon icon={faBath} className="text-green-500 mr-3 w-4 h-4" /> Baño privado
                             </li>
                             <li className="flex items-center">
-                                <i className="fas fa-utensils text-green-500 mr-3"></i> Desayuno incluido
+                                <FontAwesomeIcon icon={faUtensils} className="text-green-500 mr-3 w-4 h-4" /> Desayuno incluido
                             </li>
                         </ul>
                     </div>
