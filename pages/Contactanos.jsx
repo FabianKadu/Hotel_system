@@ -23,7 +23,7 @@ export default function Contact() {
 
   return (
     <main className="relative">
-      <div className="mt-32 mx-auto px-4 text-gray-600 py-16 dark:text-gray-300">
+      <div className="mt-20 mx-auto px-4 text-gray-600 py-16 dark:text-gray-300">
         <div className="max-w-xl space-y-3">
           <h3 className="text-indigo-600 font-semibold">
             Contacto
@@ -57,9 +57,6 @@ export default function Contact() {
       {/* Formulario de contacto */}
       <div className="relative z-10 mx-auto text-gray-600 sm:px-4 md:px-8 bg-gray-900 py-10">
         <div className="max-w-lg space-y-3 px-4 sm:mx-auto sm:text-center sm:px-0">
-          <h3 className="text-cyan-400 font-semibold">
-            Contáctanos
-          </h3>
           <p className="text-white text-3xl font-semibold sm:text-4xl">
             ¡Ponte en contacto con nosotros!
           </p>
@@ -102,11 +99,12 @@ export default function Contact() {
                     <option>US</option>
                     <option>ES</option>
                     <option>MX</option>
+                    <option>PE</option>
                   </select>
                 </div>
                 <input
                   type="number"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+51 999 999 999"
                   required
                   className="w-full pl-[4.5rem] pr-3 py-2 appearance-none bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
                 />

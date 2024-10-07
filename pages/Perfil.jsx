@@ -34,21 +34,22 @@ export default function Perfil() {
     return (
         <div className="container mx-auto mt-32">
             {/* Mostrar los detalles del usuario */}
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-                {/* Imagen centrada */}
-                <div className="flex justify-center mb-6">
-                    <img
-                        src="/foto.jpg"
-                        alt="Foto de perfil"
-                        className="rounded-full w-32 h-32 object-cover shadow-md"
-                    />
-                </div>
-                <h1 className="text-3xl font-semibold text-gray-800 mb-2">
-                    {user.nombre} {user.apellido}
-                </h1>
-                <p className="text-gray-600 mb-6">{user.email}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="p-4"></div>
+                <div className="bg-white p-4 rounded-lg shadow-lg text-center">
+                    {/* Imagen centrada */}
+                    <div className="flex justify-center mb-6">
+                        <img
+                            src="/foto.jpg"
+                            alt="Foto de perfil"
+                            className="rounded-full w-32 h-32 object-cover shadow-md"
+                        />
+                    </div>
+                    <h1 className="text-3xl font-semibold text-gray-800 mb-2">
+                        {user.nombre} {user.apellido}
+                    </h1>
+                    <p className="text-gray-600 mb-6">{user.email}</p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <p className="text-lg">
                         <strong className="text-gray-700">Teléfono:</strong> {user.telefono}
                     </p>
@@ -59,6 +60,7 @@ export default function Perfil() {
                         <strong className="text-gray-700">Puntos disponibles:</strong> {user.puntos}
                     </p>
                 </div>
+                <div className="p-4"></div>
             </div>
 
             {/* Mostrar la tabla de reservas del usuario */}
