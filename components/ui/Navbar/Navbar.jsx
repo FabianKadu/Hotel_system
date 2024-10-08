@@ -119,6 +119,8 @@ const Navbar = () => {
                                         <div className="mr-4 text-white">
                                             <span>Bienvenido, {usuario.nombre}</span>
                                         </div>
+
+                                        {/* Foto de perfil */}
                                         <div className="rounded-full bg-gray-600 w-10 h-10 flex items-center justify-center">
                                             <Link href="/Perfil" aria-label="Logo">
                                                 <img
@@ -128,7 +130,19 @@ const Navbar = () => {
                                                 />
                                             </Link>
                                         </div>
-                                        <button onClick={handleLogout} className="ml-4 bg-red-500 px-3 py-1 rounded text-white">
+
+                                        {/* Mostrar botón solo si el usuario es Administrador */}
+                                        {usuario && usuario.tipo_usuario === "Administrador" ? (
+                                            <button
+                                                onClick={() => router.push('/Administrador/Inicio')}
+                                                className="ml-4 bg-blue-500 px-3 py-1 rounded text-white hover:bg-teal-600"
+                                            >
+                                                Administrador
+                                            </button>
+                                        ) : null}
+
+                                        {/* Botón de cerrar sesión */}
+                                        <button onClick={handleLogout} className="ml-4 bg-red-500 px-3 py-1 rounded text-white hover:bg-teal-700">
                                             Cerrar Sesión
                                         </button>
                                     </div>
@@ -137,7 +151,7 @@ const Navbar = () => {
                                         href="/login"
                                         className="flex items-center justify-center gap-x-1 font-medium text-sm text-white bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full"
                                     >
-                                        Iniciar Sesion
+                                        Iniciar Sesión
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
                                             <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
                                         </svg>
