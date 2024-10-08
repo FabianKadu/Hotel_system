@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
                 <title>Hotel_system</title>
                 <meta name='description' content='This is a description about the hotel_system' />
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <link rel='icon' href='/hotel.png' />
+                <link rel='icon' href='/favicon.ico' />
             </Head>
             <Navbar />
             <main>{children}</main>

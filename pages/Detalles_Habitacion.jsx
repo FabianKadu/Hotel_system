@@ -15,7 +15,7 @@ export default function DetallesHabitacion() {
     const fetchDetallesHabitacion = async () => {
         if (id_habitacion) {
             try {
-                const response = await fetch(`/api/Habitaciones_por_Id/${id_habitacion}`);
+                const response = await fetch(`/api/Habitaciones/Habitaciones_por_Id/${id_habitacion}`);
                 const habitacionData = await response.json();
                 setHabitacion(habitacionData);
             } catch (error) {

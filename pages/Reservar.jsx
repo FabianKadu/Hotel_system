@@ -28,7 +28,7 @@ export default function Reservar() {
         const { id_habitacion } = router.query;
         if (id_habitacion) {
             // Hacer la solicitud a la API para obtener los detalles de la habitación
-            fetch(`/api/Habitaciones_por_Id/${id_habitacion}.js`)
+            fetch(`/api/Habitaciones/Habitaciones_por_Id/${id_habitacion}.js`)
                 .then((res) => res.json())
                 .then((habitacionData) => {
                     // Guardar los datos de la habitación en el estado

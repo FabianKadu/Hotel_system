@@ -5,7 +5,7 @@ export default () => {
     const [habitaciones, setHabitaciones] = useState([]);
 
     useEffect(() => {
-        fetch('/api/Habitaciones')
+        fetch('/api/Habitaciones/Habitaciones')
             .then((response) => response.json())
             .then((data) => setHabitaciones(data));
     }, []);
