@@ -126,11 +126,29 @@ const Habitaciones = () => {
         }
     };
 
+    // -------------------FILTROS
+
+    const [filtroTipo, setFiltroTipo] = useState('');
+    const [filtroEstado, setFiltroEstado] = useState('');
+
+    // Listas predefinidas para tipo y estado de habitación
+    const tiposHabitacion = ['Doble', 'Suite', 'Simple'];
+    const estadosHabitacion = ['Disponible', 'Reservada', 'Ocupada'];
+
+    const filtrarHabitaciones = () => {
+        return habitaciones.filter((habitacion) => {
+            const coincideTipo = filtroTipo ? habitacion.tipo_habitacion === filtroTipo : true;
+            const coincideEstado = filtroEstado ? habitacion.estado_habitacion === filtroEstado : true;
+
+            return coincideTipo && coincideEstado;
+        });
+    };
+
 
     return (
         <Layout>
             <div className="p-6">
-                <h1 className="text-3xl font-bold mb-6">Gestión de Habitaciones</h1>
+                <h1 className="text-3xl font-bold mb-6 text-center">Gestión de Habitaciones</h1>
 
                 {/* Botón para abrir el modal de crear habitación */}
                 <div className="mb-4">
@@ -141,6 +159,55 @@ const Habitaciones = () => {
                         Crear Habitación
                     </button>
                 </div>
+
+                {/* Filtros */}
+                <div className="mb-4 flex items-center justify-end space-x-8">
+                    <div >
+                        <label className="px-4 mb-2">Filtrar por Tipo:</label>
+                        <select
+                            className="border px-8 border-gray-300 rounded py-2"
+                            value={filtroTipo}
+                            onChange={(e) => setFiltroTipo(e.target.value)}
+                        >
+                            <option value="">Todos</option>
+                            {tiposHabitacion.map((tipo) => (
+                                <option key={tipo} value={tipo}>
+                                    {tipo}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="px-4 mb-2">Filtrar por Estado:</label>
+                        <select
+                            className="border px-8 border-gray-300 rounded py-2"
+                            value={filtroEstado}
+                            onChange={(e) => setFiltroEstado(e.target.value)}
+                        >
+                            <option value="">Todos</option>
+                            {estadosHabitacion.map((estado) => (
+                                <option key={estado} value={estado}>
+                                    {estado}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Botón para limpiar los filtros */}
+                    <div className="flex items-end">
+                        <button
+                            className="bg-blue-500 text-white px-5 py-2 rounded hover:bg-blue-600"
+                            onClick={() => {
+                                setFiltroTipo('');
+                                setFiltroEstado('');
+                            }}
+                        >
+                            Limpiar Filtros
+                        </button>
+                    </div>
+                </div>
+
 
                 {/* Tabla de habitaciones */}
                 <table className="min-w-full bg-white border border-gray-200">
@@ -156,7 +223,7 @@ const Habitaciones = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {habitaciones.map(habitacion => (
+                        {filtrarHabitaciones().map(habitacion => (
                             <tr key={habitacion.id} className="border-b">
                                 <td className="py-2 px-4 border">{habitacion.id_habitacion}</td>
                                 <td className="py-2 px-4 border">{habitacion.numero_habitacion}</td>
@@ -189,7 +256,7 @@ const Habitaciones = () => {
 
                 {/* Modal para crear una nueva habitación */}
                 {showModal && (
-                    <div className="fixed inset-0 bg-opacity-10 flex justify-center items-center">
+                    <div className="fixed inset-0 bg-opacity-10 flex justify-center items-center backdrop-blur-sm">
                         <div className="bg-white p-6 rounded-md shadow-lg">
                             <h2 className="text-2xl mb-4 text-center">Crear Habitación</h2>
                             <form onSubmit={handleSubmit}>
@@ -263,7 +330,7 @@ const Habitaciones = () => {
                 )}
 
                 {showUpdateModal && (
-                    <div className="fixed inset-0 bg-opacity-50 flex justify-center items-center">
+                    <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
                         <div className="bg-white p-6 rounded-md shadow-lg">
                             <h2 className="text-2xl mb-4 text-center">Actualizar Habitación</h2>
                             <form onSubmit={handleUpdateSubmit}>
