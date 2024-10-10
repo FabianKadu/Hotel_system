@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     try {
         const nuevaHabitacion = await prisma.habitacion.create({
             data: {
-                numero_habitacion,
+                numero_habitacion: parseInt(numero_habitacion),
                 tipo_habitacion,
                 precio_por_noche: parseFloat(precio_por_noche),
                 estado_habitacion,

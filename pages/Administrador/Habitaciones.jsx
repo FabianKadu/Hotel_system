@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 const Habitaciones = () => {
     // Estado para almacenar habitaciones
     const [habitaciones, setHabitaciones] = useState([]);
+
+    // ---------------------MODAL DE CREAR HABITACION
     const [showModal, setShowModal] = useState(false); // Estado para mostrar/ocultar el modal
     const [formData, setFormData] = useState({
         numero_habitacion: '',
@@ -14,7 +16,7 @@ const Habitaciones = () => {
     });
 
     useEffect(() => {
-        fetch('/api/Habitaciones/Habitaciones')
+        fetch('/api/Habitaciones/HabitacionesTotal')
             .then((response) => response.json())
             .then((data) => setHabitaciones(data));
     }, []);
@@ -24,7 +26,7 @@ const Habitaciones = () => {
         e.preventDefault();
         // Llamar a la API para crear una nueva habitación
         try {
-            const res = await fetch('/api/habitaciones/Crear', {
+            const res = await fetch('/api/Habitaciones/Crear', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,11 +53,79 @@ const Habitaciones = () => {
         }
     };
 
-    // Función para eliminar una habitación
-    const eliminarHabitacion = (id) => {
-        const nuevasHabitaciones = habitaciones.filter(habitacion => habitacion.id !== id);
-        setHabitaciones(nuevasHabitaciones);
+    // ---------------------MODAL DE ACTUALIZAR HABITACION
+
+    const [showUpdateModal, setShowUpdateModal] = useState(false); // Estado para mostrar/ocultar el modal de actualización
+    const [selectedHabitacion, setSelectedHabitacion] = useState(null); // Estado para la habitación seleccionada
+    const [updateFormData, setUpdateFormData] = useState({
+        numero_habitacion: '',
+        tipo_habitacion: '',
+        precio_por_noche: '',
+        estado_habitacion: '',
+        descripcion: '',
+    });
+
+    const handleOpenUpdateModal = (habitacion) => {
+        setSelectedHabitacion(habitacion); // Establecer la habitación seleccionada
+        setUpdateFormData({
+            numero_habitacion: habitacion.numero_habitacion,
+            tipo_habitacion: habitacion.tipo_habitacion,
+            precio_por_noche: habitacion.precio_por_noche,
+            estado_habitacion: habitacion.estado_habitacion,
+            descripcion: habitacion.descripcion || '',
+        });
+        setShowUpdateModal(true); // Mostrar el modal
     };
+
+    const handleUpdateSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`/api/Habitaciones/Actualizar/${selectedHabitacion.id_habitacion}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updateFormData),
+            });
+
+            if (res.ok) {
+                const habitacionActualizada = await res.json();
+
+                // Actualizar solo la habitación que fue modificada
+                const nuevasHabitaciones = habitaciones.map((hab) =>
+                    hab.id_habitacion === habitacionActualizada.id_habitacion ? habitacionActualizada : hab
+                );
+
+                setHabitaciones(nuevasHabitaciones); // Actualizar el estado de las habitaciones
+                setShowUpdateModal(false); // Cerrar el modal
+            } else {
+                console.error('Error al actualizar la habitación');
+            }
+        } catch (error) {
+            console.error('Error en la solicitud:', error);
+        }
+    };
+
+    // ---------------------MODAL DE ACTUALIZAR HABITACION  
+
+    const handleDelete = async (id_habitacion) => {
+        try {
+            const res = await fetch(`/api/Habitaciones/Eliminar/${id_habitacion}`, {
+                method: 'DELETE',
+            });
+
+            if (res.ok) {
+                // Si la eliminación es exitosa, filtra la habitación eliminada del estado
+                const nuevasHabitaciones = habitaciones.filter(habitacion => habitacion.id_habitacion !== id_habitacion);
+                setHabitaciones(nuevasHabitaciones); // Actualizar el estado
+            } else {
+                console.error('Error al eliminar la habitación');
+            }
+        } catch (error) {
+            console.error('Error en la solicitud:', error);
+        }
+    };
+
 
     return (
         <Layout>
@@ -99,14 +169,14 @@ const Habitaciones = () => {
                                         {/* Botón para actualizar */}
                                         <button
                                             className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
-                                            onClick={() => alert(`Actualizar habitación con ID: ${habitacion.id}`)}
+                                            onClick={() => handleOpenUpdateModal(habitacion)}
                                         >
                                             Actualizar
                                         </button>
                                         {/* Botón para eliminar */}
                                         <button
                                             className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
-                                            onClick={() => eliminarHabitacion(habitacion.id)}
+                                            onClick={() => handleDelete(habitacion.id_habitacion)}
                                         >
                                             Eliminar
                                         </button>
@@ -119,9 +189,9 @@ const Habitaciones = () => {
 
                 {/* Modal para crear una nueva habitación */}
                 {showModal && (
-                    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+                    <div className="fixed inset-0 bg-opacity-10 flex justify-center items-center">
                         <div className="bg-white p-6 rounded-md shadow-lg">
-                            <h2 className="text-2xl mb-4">Crear Habitación</h2>
+                            <h2 className="text-2xl mb-4 text-center">Crear Habitación</h2>
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-4">
                                     <label className="block mb-2">Número de Habitación</label>
@@ -175,14 +245,14 @@ const Habitaciones = () => {
                                 <div className="flex justify-between">
                                     <button
                                         type="button"
-                                        className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
+                                        className="bg-gray-400 mx-8 text-white px-4 py-2 rounded hover:bg-gray-500"
                                         onClick={() => setShowModal(false)}
                                     >
                                         Cancelar
                                     </button>
                                     <button
                                         type="submit"
-                                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                                        className="bg-green-500 mx-8 text-white px-4 py-2 rounded hover:bg-green-600"
                                     >
                                         Crear Habitación
                                     </button>
@@ -191,6 +261,81 @@ const Habitaciones = () => {
                         </div>
                     </div>
                 )}
+
+                {showUpdateModal && (
+                    <div className="fixed inset-0 bg-opacity-50 flex justify-center items-center">
+                        <div className="bg-white p-6 rounded-md shadow-lg">
+                            <h2 className="text-2xl mb-4 text-center">Actualizar Habitación</h2>
+                            <form onSubmit={handleUpdateSubmit}>
+                                <div className="mb-4">
+                                    <label className="block mb-2">Número de Habitación</label>
+                                    <input
+                                        type="number"
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                        value={updateFormData.numero_habitacion}
+                                        onChange={(e) => setUpdateFormData({ ...updateFormData, numero_habitacion: e.target.value })}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2">Tipo de Habitación</label>
+                                    <input
+                                        type="text"
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                        value={updateFormData.tipo_habitacion}
+                                        onChange={(e) => setUpdateFormData({ ...updateFormData, tipo_habitacion: e.target.value })}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2">Precio por Noche</label>
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                        value={updateFormData.precio_por_noche}
+                                        onChange={(e) => setUpdateFormData({ ...updateFormData, precio_por_noche: e.target.value })}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2">Estado de Habitación</label>
+                                    <input
+                                        type="text"
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                        value={updateFormData.estado_habitacion}
+                                        onChange={(e) => setUpdateFormData({ ...updateFormData, estado_habitacion: e.target.value })}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2">Descripción</label>
+                                    <textarea
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                        value={updateFormData.descripcion}
+                                        onChange={(e) => setUpdateFormData({ ...updateFormData, descripcion: e.target.value })}
+                                    />
+                                </div>
+                                <div className="flex justify-between">
+                                    <button
+                                        type="button"
+                                        className="bg-gray-400 mx-8 text-white px-4 py-2 rounded hover:bg-gray-500"
+                                        onClick={() => setShowUpdateModal(false)} // Cerrar el modal
+                                    >
+                                        Cancelar
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="bg-green-500 mx-8 text-white px-4 py-2 rounded hover:bg-green-600"
+                                    >
+                                        Actualizar Habitación
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
+
             </div>
         </Layout>
     );
