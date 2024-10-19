@@ -132,7 +132,7 @@ const Habitaciones = () => {
     const [filtroEstado, setFiltroEstado] = useState('');
 
     // Listas predefinidas para tipo y estado de habitación
-    const tiposHabitacion = ['Doble', 'Suite', 'Simple'];
+    const tiposHabitacion = ['Simple', 'Individual', 'Doble', 'Suite'];
     const estadosHabitacion = ['Disponible', 'Reservada', 'Ocupada'];
 
     const filtrarHabitaciones = () => {

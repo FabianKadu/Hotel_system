@@ -49,6 +49,7 @@ model reserva {
 
 model usuario {
   id_usuario     Int        @id @default(autoincrement())
+  dni            String     @db.VarChar(8)  @unique
   nombre         String     @db.VarChar(50)
   apellido       String     @db.VarChar(50)
   email          String     @unique(map: "email") @db.VarChar(100)

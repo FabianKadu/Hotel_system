@@ -1,13 +1,13 @@
 export default function AboutUs() {
     return (
-        <section className="relative py-16 bg-gray-100">
+        <section className="relative py-16 bg-gray-200">
             <div className="mt-32 container mx-auto px-4">
                 <div className="max-w-2xl mx-auto text-center">
-                    <h2 className="text-3xl font-semibold text-gray-800 sm:text-4xl">
+                    <h2 className="text-3xl font-semibold text-blue-800 sm:text-4xl">
                         Sobre Nosotros
                     </h2>
                     <p className="mt-4 text-lg text-gray-600">
-                        En Hotel Paraíso del Sol, nos dedicamos a ofrecer a nuestros huéspedes una experiencia única y placentera, con la máxima comodidad y servicios de alta calidad.
+                        En Hotel Cat, nos dedicamos a ofrecer a nuestros huéspedes una experiencia única y placentera, con la máxima comodidad y servicios de alta calidad.
                         Descubre más sobre quiénes somos y por qué somos el lugar ideal para tu próxima estancia.
                     </p>
                 </div>
@@ -61,7 +61,7 @@ export default function AboutUs() {
                 <div className="mt-16 text-center">
                     <h3 className="text-2xl font-semibold text-gray-800">¿Por qué elegirnos?</h3>
                     <p className="mt-4 text-lg text-gray-600">
-                        En Hotel Paraíso del Sol, ofrecemos más que solo una habitación. Ofrecemos una experiencia completa, desde habitaciones modernas hasta servicios de spa, piscina y gastronomía de primera calidad.
+                        En Hotel Cat, ofrecemos más que solo una habitación. Ofrecemos una experiencia completa, desde habitaciones modernas hasta servicios de spa, piscina y gastronomía de primera calidad.
                         Cada huésped es especial para nosotros, y nos enorgullecemos de ofrecer un servicio personalizado y de alta calidad.
                     </p>
                 </div>

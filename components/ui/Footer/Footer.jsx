@@ -34,9 +34,9 @@ export default function Footer() {
     return (
         <footer className="text-gray-600 bg-gray-100 px-6 py-8 mx-auto md:px-8">
             <div className="sm:mx-auto sm:text-center">
-                <img src="./Hotel.png" className="w-32 sm:mx-auto" alt="Logo del Hotel" />
+                <img src="./favicon.ico" className="w-32 sm:mx-auto" alt="Logo del Hotel" />
                 <p className="leading-relaxed mt-4 text-base">
-                    Hotel _ es el lugar perfecto para disfrutar de una experiencia única de relajación y confort. Ubicado en el corazón de la ciudad, nuestro hotel ofrece habitaciones modernas con las mejores comodidades, como WiFi de alta velocidad, televisión con Netflix, y servicio de limpieza diario. Ven y descubre un oasis de tranquilidad en pleno centro urbano.
+                    Hotel Cat es el lugar perfecto para disfrutar de una experiencia única de relajación y confort. Ubicado en el corazón de la ciudad, nuestro hotel ofrece habitaciones modernas con las mejores comodidades, como WiFi de alta velocidad, televisión con Netflix, y servicio de limpieza diario. Ven y descubre un oasis de tranquilidad en pleno centro urbano.
                 </p>
             </div>
 
@@ -51,7 +51,7 @@ export default function Footer() {
 
             {/* Redes sociales */}
             <div className="mt-8 sm:flex sm:justify-between sm:items-center">
-                <div className="text-sm text-gray-500">&copy; Wholy System - 2024</div>
+                <div className="text-sm text-gray-500">&copy; Hotel Cat - 2024</div>
 
                 <div className="mt-6 sm:mt-0 flex justify-center space-x-4">
                     <a href="javascript:void(0)" className="w-10 h-10 border rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300">

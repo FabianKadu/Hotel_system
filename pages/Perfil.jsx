@@ -16,7 +16,7 @@ export default function Perfil() {
             setUser(userData);
 
             // Obtener las reservas del usuario
-            fetch(`/api/Reservas/${userData.id_usuario}`)
+            fetch(`/api/Reservas/ReservasPorId/${userData.id_usuario}`)
                 .then((res) => res.json())
                 .then((reservasData) => {
                     setReservas(reservasData); // Guardar las reservas del usuario
@@ -50,6 +50,9 @@ export default function Perfil() {
                     </h1>
                     <p className="text-gray-600 mb-6">{user.email}</p>
 
+                    <p className="text-lg">
+                        <strong className="text-gray-700">DNI:</strong> {user.dni}
+                    </p>
                     <p className="text-lg">
                         <strong className="text-gray-700">Teléfono:</strong> {user.telefono}
                     </p>

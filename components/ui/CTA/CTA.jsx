@@ -19,7 +19,7 @@ const CTA = () => {
             <div className="bg-gradient-to-tr from-slate-900 via-indigo-900 to-slate-900 py-10 pb-10 px-6">
                 <div className="max-w-3xl mx-auto text-gray-100 space-y-6">
                     <h2 className="text-3xl font-semibold sm:text-4xl">
-                        Disfruta de una estancia inolvidable en <span className="font-bold text-yellow-300">Hotel Paraíso del Sol</span>
+                        Disfruta de una estancia inolvidable en <span className="font-bold text-yellow-300">Hotel Cat</span>
                     </h2>
                     <p className="text-lg leading-relaxed">
                         Nuestro hotel está diseñado para brindarte la mejor experiencia, con todas las comodidades que necesitas para relajarte y disfrutar de tu visita, ya sea por negocios o placer.

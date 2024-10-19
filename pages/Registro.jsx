@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function Registro() {
     const [formData, setFormData] = useState({
+        dni: '',
         nombre: '',
         apellido: '',
         email: '',
@@ -59,10 +60,19 @@ export default function Registro() {
         <div className="min-h-screen flex items-center justify-center">
             <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg mt-5 mb-5">
                 <Link href="/" aria-label="Logo">
-                    <img src="./hotel.png" width={120} className="mx-auto" />
+                    <img src="./favicon.ico" width={120} className="mx-auto" />
                 </Link>
                 <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">Registro de Usuario</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                    <input
+                        type="number"
+                        name="dni"
+                        placeholder="DNI"
+                        value={formData.dni}
+                        onChange={handleChange}
+                        required
+                        className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
                     <input
                         type="text"
                         name="nombre"

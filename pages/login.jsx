@@ -37,16 +37,16 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Login - Hotel System</title>
+        <title>Login - Hotel Cat</title>
       </Head>
       <main className="w-full h-screen flex flex-col items-center justify-center px-4">
         <div className="max-w-sm w-full text-gray-600  space-y-5">
           <div className="text-center pb-8">
             <Link href="/" aria-label="Logo">
-              <img src="./hotel.png" width={120} className="mx-auto" />
+              <img src="./favicon.ico" width={120} className="mx-auto" />
             </Link>
             <div className="mt-5">
-              <h3 className="text-gray-800 dark:text-gray-300 text-4xl font-bold sm:text-3xl">Hotel System</h3>
+              <h3 className="text-gray-800 dark:text-gray-300 text-4xl font-bold sm:text-3xl">Hotel Cat</h3>
             </div>
             <hr></hr>
             <div className="mt-5">

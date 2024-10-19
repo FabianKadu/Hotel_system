@@ -17,7 +17,7 @@ export default () => {
                     Habitaciones
                 </h1>
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
-                    Descubre el confort y la modernidad de nuestras habitaciones en Hotel _, donde cada detalle está diseñado para tu comodidad. ¡Relájate y disfruta de una estancia inolvidable!
+                    Descubre el confort y la modernidad de nuestras habitaciones en Hotel Cat, donde cada detalle está diseñado para tu comodidad. ¡Relájate y disfruta de una estancia inolvidable!
                 </p>
             </div>
             <div className="my-10 mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
