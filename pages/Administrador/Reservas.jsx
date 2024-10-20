@@ -79,7 +79,6 @@ const Reservas = () => {
                 <table className="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr className="bg-gray-100 border-b">
-                            <th className="py-2 px-4 border">ID</th>
                             <th className="py-2 px-4 border">N° Hab</th>
                             <th className="py-2 px-4 border">DNI</th>
                             <th className="py-2 px-4 border">Huésped</th>
@@ -93,7 +92,6 @@ const Reservas = () => {
                     <tbody>
                         {reservas.map((reserva) => (
                             <tr key={reserva.id_reserva} className="border-b">
-                                <td className="py-2 px-4 border">{reserva.id_reserva}</td>
                                 <td className="py-2 px-4 border">{reserva.habitacion.numero_habitacion}</td>
                                 <td className="py-2 px-4 border">{reserva.usuario.dni}</td>
                                 <td className="py-2 px-4 border">{reserva.usuario.apellido} {reserva.usuario.nombre}</td>

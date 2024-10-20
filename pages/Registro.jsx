@@ -37,7 +37,7 @@ export default function Registro() {
         e.preventDefault();
 
         // Enviar los datos al backend
-        const response = await fetch('/api/Usuarios', {
+        const response = await fetch('/api/Usuarios/Crear', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
