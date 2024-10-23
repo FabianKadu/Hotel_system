@@ -75,11 +75,14 @@ export default function Reservar() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const formattedFechaEntrada = new Date(formData.fecha_entrada + 'T00:00:00');
+        const formattedFechaSalida = new Date(formData.fecha_salida + 'T00:00:00');
+
         const reservaData = {
             id_usuario: user.id_usuario, // ID del usuario logueado
             id_habitacion: formData.id_habitacion, // ID de la habitación
-            fecha_entrada: formData.fecha_entrada,
-            fecha_salida: formData.fecha_salida,
+            fecha_entrada: formattedFechaEntrada.toISOString().split('T')[0],
+            fecha_salida: formattedFechaSalida.toISOString().split('T')[0],
             numero_noches: formData.numero_noches,
             costo_total: formData.costo_total,
         };

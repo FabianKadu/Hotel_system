@@ -28,8 +28,16 @@ export default async function handler(req, res) {
             },
         });
 
-        // Devolver los datos sin formateo adicional
-        res.status(200).json(reservas);
+        // Formatear las fechas para evitar desfase de zona horaria
+        const reservasFormateadas = reservas.map(reserva => ({
+            ...reserva,
+            fecha_reserva: reserva.fecha_reserva.toISOString().split('T')[0],
+            fecha_entrada: reserva.fecha_entrada.toISOString().split('T')[0],
+            fecha_salida: reserva.fecha_salida.toISOString().split('T')[0],
+        }));
+
+        // Devolver los datos con fechas formateadas
+        res.status(200).json(reservasFormateadas);
     } catch (error) {
         console.error('Error al obtener las reservas:', error);
         res.status(500).json({ message: 'Error al obtener las reservas' });

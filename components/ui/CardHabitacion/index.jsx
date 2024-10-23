@@ -24,7 +24,7 @@ function CardHabitacion({ habitacion }) {
 
     return (
         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-            <img class="w-full h-48 object-cover" src={`/habitacion${habitacion.numero_habitacion}.jpg`} alt="Habitación de hotel" />
+            <img class="w-full h-48 object-cover" src={`/habitacion${habitacion.numero_habitacion}1.jpg`} alt="Habitación de hotel" />
 
             <div class="px-6 py-4">
                 <div class="flex items-center justify-between">

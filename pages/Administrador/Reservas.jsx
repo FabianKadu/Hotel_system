@@ -95,20 +95,18 @@ const Reservas = () => {
                                 <td className="py-2 px-4 border">{reserva.habitacion.numero_habitacion}</td>
                                 <td className="py-2 px-4 border">{reserva.usuario.dni}</td>
                                 <td className="py-2 px-4 border">{reserva.usuario.apellido} {reserva.usuario.nombre}</td>
-                                <td className="py-2 px-4 border">{new Date(reserva.fecha_reserva).toLocaleDateString()}</td>
-                                <td className="py-2 px-4 border">{new Date(reserva.fecha_entrada).toLocaleDateString()}</td>
-                                <td className="py-2 px-4 border">{new Date(reserva.fecha_salida).toLocaleDateString()}</td>
+                                <td className="py-2 px-4 border">{reserva.fecha_reserva}</td> {/* Mostrar la fecha sin convertir */}
+                                <td className="py-2 px-4 border">{reserva.fecha_entrada}</td> {/* Mostrar la fecha sin convertir */}
+                                <td className="py-2 px-4 border">{reserva.fecha_salida}</td> {/* Mostrar la fecha sin convertir */}
                                 <td className="py-2 px-4 border">S/{reserva.costo_total}.00</td>
                                 <td className="py-2 px-4 border">
                                     <div className="flex space-x-2">
-                                        {/* Botón para actualizar */}
                                         <button
                                             className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
                                             onClick={() => handleOpenUpdateModal(reserva)}
                                         >
                                             Actualizar
                                         </button>
-                                        {/* Botón para eliminar */}
                                         <button
                                             className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                                             onClick={() => handleDelete(reserva.id_reserva)}
@@ -120,6 +118,7 @@ const Reservas = () => {
                             </tr>
                         ))}
                     </tbody>
+
                 </table>
             </div>
         </Layout>

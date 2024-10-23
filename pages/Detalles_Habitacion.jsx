@@ -34,11 +34,11 @@ export default function DetallesHabitacion() {
 
     // Crear rutas dinámicas para las imágenes en base al número de la habitación
     const imagenes = [
-        `/habitacion${habitacion.numero_habitacion}.jpg`,
         `/habitacion${habitacion.numero_habitacion}1.jpg`,
         `/habitacion${habitacion.numero_habitacion}2.jpg`,
         `/habitacion${habitacion.numero_habitacion}3.jpg`,
         `/habitacion${habitacion.numero_habitacion}4.jpg`
+        `/habitacion${habitacion.numero_habitacion}5.jpg`,
     ];
 
     const handleReservar = () => {
